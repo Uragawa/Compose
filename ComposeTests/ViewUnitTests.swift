@@ -81,7 +81,7 @@ class ViewUnitTests: XCTestCase {
     
     func testUUIDIdentifier() {
         let dummyUnit = ViewUnit<UIView>(traits: [])
-        XCTAssert(dummyUnit.identifier.characters.count > 0)
+        XCTAssert(dummyUnit.identifier.count > 0)
     }
     
     func testRegisterUIViewInCollectionView() {

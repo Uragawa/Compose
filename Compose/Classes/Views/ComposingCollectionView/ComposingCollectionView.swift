@@ -166,11 +166,11 @@ public class ComposingCollectionView: UICollectionView, ComposingContainer {
     }
 
     private func didFinishReorderingItems(changedSet: Set<Int>) {
-        let cellsWithIndexPath: [(UICollectionViewCell, Int)] = self.visibleCells.flatMap { cell in
+        let cellsWithIndexPath: [(UICollectionViewCell, Int)] = self.visibleCells.compactMap { cell in
             guard let indexPath = self.indexPath(for: cell), !changedSet.contains(indexPath.row) else { return nil }
             return (cell, indexPath.item)
         }
-        let cellsWithUnits: [(UICollectionViewCell, ComposingUnit)] = cellsWithIndexPath.flatMap { (cell, index) in
+        let cellsWithUnits: [(UICollectionViewCell, ComposingUnit)] = cellsWithIndexPath.compactMap { (cell, index) in
             return (cell, self.internalSource[index])
         }
         cellsWithUnits.forEach { (cell, unit) in

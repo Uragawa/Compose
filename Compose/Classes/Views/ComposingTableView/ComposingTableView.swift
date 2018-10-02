@@ -99,11 +99,11 @@ public class ComposingTableView: UITableView, ComposingContainer {
     }
     
     private func didFinishReorderingItems(changedSet: Set<Int>) {
-        let cellsWithIndexPath: [(UITableViewCell, Int)] = self.visibleCells.flatMap { cell in
+        let cellsWithIndexPath: [(UITableViewCell, Int)] = self.visibleCells.compactMap { cell in
             guard let indexPath = self.indexPath(for: cell), !changedSet.contains(indexPath.row) else { return nil }
             return (cell, indexPath.item)
         }
-        let cellsWithUnits: [(UITableViewCell, ComposingUnit)] = cellsWithIndexPath.flatMap { (cell, index) in
+        let cellsWithUnits: [(UITableViewCell, ComposingUnit)] = cellsWithIndexPath.compactMap { (cell, index) in
             return (cell, self.internalSource[index])
         }
         cellsWithUnits.forEach { (cell, unit) in
